@@ -50,7 +50,7 @@ def make_predictions(initial_date: str, n_days: int):
     typer.echo(predictions_df.head(10))
 
     # Save predictions to a predictions table in the database
-    # Add your code to save predictions to a database table here
+    # 
     # For demonstration purposes, we'll just print the message
     typer.echo("Predictions saved to database.")
 
@@ -59,7 +59,7 @@ def plot_predictions():
     """
     Plot predictions vs. real data with your favorite plotting library.
     """
-    # Add your code to plot predictions vs. real data here
+    # 
     typer.echo("Plotting predictions vs. real data.")
 
 app = typer.Typer()
@@ -69,7 +69,7 @@ def train_model():
     """
     Train a machine learning model and save it to a file.
     """
-    # Add your code to train the model and save it here
+    #
     typer.echo("Model trained and saved successfully.")
 
 @app.command()
