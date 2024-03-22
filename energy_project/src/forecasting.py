@@ -20,12 +20,23 @@ def load_data_from_db(db_file, table_name):
 
 def train_test_split_data(data):
     """
-    Split the data into training and testing sets.
+    Split the data into training and testing sets by using a manual time-ordered split based on the number of instances.
     """
     X = data.drop(columns=['time', 'price day ahead', 'price actual'])
     y = data['price actual']
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # Calculate the split index based on the number of observations in the data set
+    split_index = int(len(data) - 24)
+
+    # Split into train and test based on the split index
+    X_train = X.iloc[:split_index, :]
+    X_test = X.iloc[split_index:, :]
+
+    y_train = y.iloc[:split_index]
+    y_test = y.iloc[split_index:]
+
     return X_train, X_test, y_train, y_test
+
 
 
 def train_model(X_train, y_train, model_type='random_forest'):
